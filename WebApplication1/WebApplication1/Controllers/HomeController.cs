@@ -58,7 +58,7 @@ namespace WebApplication1.Controllers
                 Drink = db.Drinks.FirstOrDefault(x => x.DrinkID == id)
             };
             db.Orders.Add(order);
-            return Redirect(String.Format("/Home/ViewOrder/{0}", order.OrderID));
+            return RedirectToAction("ViewOrder", new { id = order.OrderID });
         }
 
         public ActionResult ViewOrder(int? id)
@@ -94,7 +94,7 @@ namespace WebApplication1.Controllers
             var order = db.Orders.First(x => x.OrderID == orderEdit.OrderID);
             order.Drink = db.Drinks.First(x => x.DrinkID == orderEdit.DrinkID);
             order.DrinkID = orderEdit.DrinkID;
-            return Redirect(String.Format("/Home/ViewOrder/{0}", order.OrderID));
+            return RedirectToAction("ViewOrder", new { id = order.OrderID });
         }
     }
 }
