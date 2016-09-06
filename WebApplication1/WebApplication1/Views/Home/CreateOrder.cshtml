@@ -1,0 +1,16 @@
+﻿@model List<WebApplication1.Models.Drink>
+@{
+    ViewBag.Title = "Place Order";
+}
+
+<h1>Place Order</h1>
+
+<form method="post">
+    <select name="id">
+        @foreach (var drink in Model)
+        {
+            <option value="@drink.DrinkID">@drink.Name $@drink.Price.ToString("#.00")</option>
+        }       
+    </select>
+    <button type="submit">Order</button>
+</form>

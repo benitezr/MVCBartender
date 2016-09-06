@@ -1,0 +1,15 @@
+﻿@model List<WebApplication1.Models.Order>
+@{
+    ViewBag.Title = "Order Queue";
+}
+
+<h1>Order Queue</h1>
+
+<ol>
+    @foreach (var order in Model)
+    {
+        <li>@order.Drink.Name $@order.Drink.Price.ToString("#.00") @Html.ActionLink("Details", "ViewOrder", new { id=order.OrderID })</li>
+    }
+</ol>
+
+<div>@Html.ActionLink("Home", "Index", "Home")</div>

@@ -1,0 +1,22 @@
+﻿@model WebApplication1.Models.Order
+@{
+    ViewBag.Title = "View Orders";
+}
+
+<h1>View Order</h1>
+
+<table>
+    <tr>
+        <th>Order Number</th>
+        <th>Drink Name</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>@Model.OrderID</td>
+        <td>@Model.Drink.Name</td>
+        <td>$@Model.Drink.Price.ToString("#.00")</td>
+        <td>@Html.ActionLink("edit", "EditOrder", new { id=Model.OrderID })</td>
+    </tr>
+</table>
+<br />
+<div>@Html.ActionLink("Home", "Index", "Home")</div>
