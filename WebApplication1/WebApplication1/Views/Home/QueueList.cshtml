@@ -1,0 +1,8 @@
+﻿@model List<WebApplication1.Models.Order>
+
+<ol>
+    @foreach (var order in Model)
+    {
+        <li>@order.Drink.Name $@order.Drink.Price.ToString("#.00") <a href="@Url.Action("ViewOrder", "Home", new { id = order.OrderID })">Details</a> | <a href="#" id="@order.OrderID" class="complete">Complete</a></li>
+    }
+</ol>

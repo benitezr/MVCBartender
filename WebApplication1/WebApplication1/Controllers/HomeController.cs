@@ -37,6 +37,8 @@ namespace WebApplication1.Controllers
             Orders = new List<Order>()
         };
 
+        private static List<Order> tempOrders = new List<Order>();
+
         public ActionResult Index()
         {
             return View(db.Drinks);
@@ -53,32 +55,42 @@ namespace WebApplication1.Controllers
         {
             var order = new Order()
             {
-                OrderID = db.Orders.Count + 1,
+                OrderID = tempOrders.Count + 1,
                 DrinkID = id,
                 Drink = db.Drinks.FirstOrDefault(x => x.DrinkID == id)
             };
-            db.Orders.Add(order);
+            tempOrders.Add(order);
             return RedirectToAction("ViewOrder", new { id = order.OrderID });
         }
 
         public ActionResult ViewOrder(int? id)
         {
             if (id == null) { return View("Error"); }
-            var order = db.Orders.FirstOrDefault(x => x.OrderID == id);
+            var order = tempOrders.FirstOrDefault(x => x.OrderID == id);
             if (order == null) { return View("Error"); }      
             return View(order);
         }
 
         public ActionResult OrderQueue()
         {
-            return View(db.Orders);
+            return View();
+        }
+
+        public ActionResult QueueList(int? id)
+        {
+            if (id == null) { return PartialView(tempOrders); }
+            var order = tempOrders.First(x => x.OrderID == id);
+            tempOrders.Remove(order);
+            order.OrderID = db.Orders.Count + 1;
+            db.Orders.Add(order);          
+            return PartialView(tempOrders);
         }
 
         [HttpGet]
         public ActionResult EditOrder(int? id)
         {
             if (id == null) { return View("Error"); }
-            var order = db.Orders.FirstOrDefault(x => x.OrderID == id);
+            var order = tempOrders.FirstOrDefault(x => x.OrderID == id);
             if (order == null) { return View("Error"); }
             EditVM model = new EditVM()
             {
@@ -91,7 +103,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult EditOrder(Order orderEdit)
         {
-            var order = db.Orders.First(x => x.OrderID == orderEdit.OrderID);
+            var order = tempOrders.First(x => x.OrderID == orderEdit.OrderID);
             order.Drink = db.Drinks.First(x => x.DrinkID == orderEdit.DrinkID);
             order.DrinkID = orderEdit.DrinkID;
             return RedirectToAction("ViewOrder", new { id = order.OrderID });

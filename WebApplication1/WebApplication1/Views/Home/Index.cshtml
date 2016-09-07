@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
 <h1>Home Page</h1>
 <h3>Menu Options</h3>
 <ul>
@@ -11,6 +10,5 @@
         <li>@drink.Name $@drink.Price.ToString("#.00")</li>
     }
 </ul>
-
 <div>@Html.ActionLink("CreateOrder", "CreateOrder", "Home")</div>
 <div>@Html.ActionLink("OrderQueue", "OrderQueue", "Home")</div>

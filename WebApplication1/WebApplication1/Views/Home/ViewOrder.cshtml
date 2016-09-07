@@ -5,17 +5,18 @@
 
 <h1>View Order</h1>
 
-<table>
+<table class="table">
     <tr>
         <th>Order Number</th>
         <th>Drink Name</th>
         <th>Price</th>
+        <th></th>
     </tr>
     <tr>
         <td>@Model.OrderID</td>
         <td>@Model.Drink.Name</td>
         <td>$@Model.Drink.Price.ToString("#.00")</td>
-        <td>@Html.ActionLink("edit", "EditOrder", new { id=Model.OrderID })</td>
+        <td>@Html.ActionLink("edit", "EditOrder", new { id = Model.OrderID })</td>       
     </tr>
 </table>
 <br />

@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -138,6 +139,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\orderqueue.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -158,6 +160,7 @@
     <Content Include="Views\Home\ViewOrder.cshtml" />
     <Content Include="Views\Home\OrderQueue.cshtml" />
     <Content Include="Views\Home\EditOrder.cshtml" />
+    <Content Include="Views\Home\QueueList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
